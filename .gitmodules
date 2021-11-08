@@ -1,0 +1,3 @@
+[submodule "docker-stacks"]
+	path = docker-stacks
+	url = git@github.com:edoardogiacomello/docker-stacks.git
