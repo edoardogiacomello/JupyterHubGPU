@@ -1,0 +1,20 @@
+version: '2.3'
+
+services:
+  jupyterhub:
+    runtime: nvidia
+    build: ./jupyterhub
+    image: jupyterhub
+    ports:
+      - "8000:8000"
+    container_name: jupyterhub-container
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jupyterhub:/srv/jupyterhub
+      - /home/jh_users/:/user_home/
+      - /mnt/sda2/:/shared_data/
+    environment:
+      DOCKER_JUPYTER_CONTAINER: jupyter-notebook
+      DOCKER_NETWORK_NAME: ${COMPOSE_PROJECT_NAME}_default
+      HUB_IP: jupyterhub-container
+
